@@ -26,7 +26,7 @@ class AlphaVantage(object):
     _RAPIDAPI_URL = "https://alpha-vantage.p.rapidapi.com/query?"
 
     def __init__(self, key=None, output_format='json',
-                 treat_info_as_error=True, indexing_type='date', proxy=None, rapidapi=False):
+                 treat_info_as_error=True, indexing_type='date', proxy=None, rapidapi=False, appendtype=True):
         """ Initialize the class
 
         Keyword Arguments:
@@ -69,7 +69,7 @@ class AlphaVantage(object):
         self.treat_info_as_error = treat_info_as_error
         # Not all the calls accept a data type appended at the end, this
         # variable will be overridden by those functions not needing it.
-        self._append_type = True
+        self._append_type = appendtype
         self.indexing_type = indexing_type
         self.proxy = proxy or {}
 

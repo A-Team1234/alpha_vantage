@@ -72,6 +72,12 @@ ts = TimeSeries(key='YOUR_API_KEY',output_format='pandas', indexing_type='date')
 ts = TimeSeries(key='YOUR_API_KEY',output_format='pandas', indexing_type='integer')
 ```
 
+To get extended intra day information. For more info on the extended intra-day read [this](https://www.alphavantage.co/documentation/#intraday-extended).
+```python
+ts = TimeSeries(key='YOUR_API_KEY', appendtype=False, output_format='csv')
+data, meta_data = ts.get_intraday_extended('GOOGL', slice='year1month3')
+```
+
 ## Data frame structure
 The data frame structure is given by the call on alpha vantage rest API. The column names of the data frames
 are the ones given by their data structure. For example, the following call:

@@ -26,6 +26,32 @@ class TimeSeries(av):
 
     @av._output_format
     @av._call_api_on_func
+    def get_intraday_extended(self, symbol, interval='15min', slice='year1month1', adjusted='false'):
+        """ Return intraday time series extended in two json objects as data and
+        meta_data. It raises ValueError when problems arise
+
+        Keyword Arguments:
+            symbol:  the symbol for the equity we want to get its data
+            interval:  time interval between two conscutive values,
+                supported values are '1min', '5min', '15min', '30min', '60min'
+                (default '15min')
+            slice: Two years of minute-level intraday data contains over 2 million
+                data points, which can take up to Gigabytes of memory. To ensure optimal
+                API response speed, the trailing 2 years of intraday data is evenly
+                divided into 24 "slices" - year1month1, year1month2, year1month3, ...,
+                year1month11, year1month12, year2month1, year2month2, year2month3, ...,
+                year2month11, year2month12. Each slice is a 30-day window, with
+                year1month1 being the most recent and year2month12 being the farthest
+                from today. By default, slice=year1month1
+            adjusted: By default, adjusted=false and the output time series is adjusted
+                by historical split and dividend events. Set adjusted=false to query
+                raw (as-traded) intraday values
+        """
+        _FUNCTION_KEY = "TIME_SERIES_INTRADAY_EXTENDED"
+        return _FUNCTION_KEY, "Time Series ({})".format(interval), 'Meta Data'
+
+    @av._output_format
+    @av._call_api_on_func
     def get_daily(self, symbol, outputsize='compact'):
         """ Return daily time series in two json objects as data and
         meta_data. It raises ValueError when problems arise

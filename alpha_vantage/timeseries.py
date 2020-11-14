@@ -52,7 +52,7 @@ class TimeSeries(av):
 
     @av._output_format
     @av._call_api_on_func
-    def get_daily(self, symbol, outputsize='compact'):
+    def get_daily(self, symbol, outputsize='compact', datatype='csv'):
         """ Return daily time series in two json objects as data and
         meta_data. It raises ValueError when problems arise
 
